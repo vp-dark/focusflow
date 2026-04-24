@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FocusFlow - Free Pomodoro Timer & Daily Focus Tool</title>
+
+  <meta
+    name="description"
+    content="Free online Pomodoro timer with task tracking and focus sessions. Simple productivity tool for students, coders, and remote workers."
+  />
+
+  <meta
+    name="keywords"
+    content="pomodoro timer, focus timer, productivity tool, study timer, work timer"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>FocusFlow</h1>
+    <p>Stay focused. Finish faster.</p>
+  </header>
+
+  <main>
+
+    <section class="timer-box">
+      <h2>Pomodoro Timer</h2>
+
+      <div id="timer">25:00</div>
+
+      <div class="buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
+    </section>
+
+
+    <section class="tasks-box">
+      <h2>Today's Tasks</h2>
+
+      <div class="task-input">
+        <input type="text" id="taskInput" placeholder="Add a task..." />
+        <button onclick="addTask()">Add</button>
+      </div>
+
+      <ul id="taskList"></ul>
+    </section>
+
+
+    <section class="quote-box">
+      <h2>Focus Quote</h2>
+      <p id="quote"></p>
+      <button onclick="newQuote()">New Quote</button>
+    </section>
+
+
+    <section class="seo-content">
+      <h2>Why Use a Pomodoro Timer?</h2>
+
+      <p>
+        The Pomodoro technique helps students and professionals stay focused
+        using short work sessions and small breaks. It improves concentration,
+        reduces burnout, and increases productivity.
+      </p>
+
+      <p>
+        FocusFlow is a free online focus timer that works directly in your
+        browser without installing anything.
+      </p>
+    </section>
+
+  </main>
+
+
+  <footer>
+    <p>Made with ❤️ for productive people.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
