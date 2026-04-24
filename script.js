@@ -1,74 +1,76 @@
 let time = 25 * 60;
-  timerDisplay.innerText = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-}
 
-function startTimer() {
-  if (timerRunning) return;
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskInput = document.getElementById('taskInput');
+const taskList = document.getElementById('taskList');
 
-  timerRunning = true;
+function createTask(taskText) {
+  const li = document.createElement('li');
+  li.className = 'task-item';
 
-  interval = setInterval(() => {
-    if (time > 0) {
-      time--;
-      updateTimer();
-    } else {
-      clearInterval(interval);
-      timerRunning = false;
-      alert("Session Complete! Take a break.");
-    }
-  }, 1000);
-}
+  const left = document.createElement('div');
+  left.className = 'task-left';
 
-function pauseTimer() {
-  clearInterval(interval);
-  timerRunning = false;
-}
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
 
-function resetTimer() {
-  clearInterval(interval);
-  timerRunning = false;
-  time = 25 * 60;
-  updateTimer();
-}
+  const span = document.createElement('span');
+  span.textContent = taskText;
 
-updateTimer();
+  checkbox.addEventListener('change', () => {
+    span.classList.toggle('completed');
+  });
 
+  left.appendChild(checkbox);
+  left.appendChild(span);
 
-function addTask() {
-  const input = document.getElementById("taskInput");
-  const taskText = input.value.trim();
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.className = 'delete-btn';
 
-  if (!taskText) return;
-
-  const li = document.createElement("li");
-
-  li.innerHTML = `
-    ${taskText}
-    <button class="delete-btn">Delete</button>
-  `;
-
-  li.querySelector("button").addEventListener("click", () => {
+  deleteBtn.addEventListener('click', () => {
     li.remove();
   });
 
-  document.getElementById("taskList").appendChild(li);
+  li.appendChild(left);
+  li.appendChild(deleteBtn);
 
-  input.value = "";
+  taskList.appendChild(li);
 }
+
+addTaskBtn.addEventListener('click', () => {
+  const text = taskInput.value.trim();
+
+  if (text === '') return;
+
+  createTask(text);
+  taskInput.value = '';
+});
+
+taskInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    addTaskBtn.click();
+  }
+});
 
 
 const quotes = [
-  "Small progress is still progress.",
-  "Focus on the task, not the noise.",
-  "Discipline beats motivation.",
-  "One focused hour can change everything.",
-  "Done is better than perfect.",
-  "Consistency creates results."
+  'Discipline beats motivation.',
+  'Focus on progress, not perfection.',
+  'Consistency creates success.',
+  'One hour of focus changes everything.',
+  'Small steps every day win big.',
+  'Deep work creates real results.'
 ];
 
-function newQuote() {
+const quoteText = document.getElementById('quote');
+const quoteBtn = document.getElementById('quoteBtn');
+
+function generateQuote() {
   const random = Math.floor(Math.random() * quotes.length);
-  document.getElementById("quote").innerText = quotes[random];
+  quoteText.textContent = quotes[random];
 }
 
-newQuote();
+quoteBtn.addEventListener('click', generateQuote);
+
+generateQuote();
